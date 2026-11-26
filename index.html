@@ -1,0 +1,691 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="StudyMate is a student companion for planning, studying, tracking grades and organizing notes.">
+  <title>StudyMate | Student Companion</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="#home">
+    <span class="brand-icon">S</span> StudyMate
+  </a>
+
+  <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation">☰</button>
+
+  <nav id="main-nav">
+    <a href="#home">Home</a>
+    <a href="#creator">About</a>
+    <a href="#planner">Planner</a>
+    <a href="#timetable">Timetable</a>
+    <a href="#grades">Grades</a>
+    <a href="#focus">Focus</a>
+    <a href="#notes">Notes</a>
+    <a href="#resources">Resources</a>
+    <a href="#progress">Progress</a>
+  </nav>
+
+  <button class="theme-toggle" id="theme-toggle" type="button"
+          aria-label="Switch to dark mode" aria-pressed="false">
+    🌙 Dark
+  </button>
+</header>
+
+<main>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="home">
+    <div class="hero-text">
+      <p class="eyebrow">YOUR STUDENT COMPANION</p>
+
+      <h1>Make your study<br><span>count.</span></h1>
+
+      <p class="intro">
+        Plan your week, focus on your goals, organize your notes
+        and track your progress in one place.
+      </p>
+
+      <a class="primary-btn" href="#planner">
+        Start organizing <span>→</span>
+      </a>
+    </div>
+
+    <div class="hero-art">
+      <img
+        class="hero-photo"
+        src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=900&q=85"
+        alt="Study desk with books and learning materials"
+        loading="lazy"
+      >
+
+      <div class="orbit orbit-one"></div>
+      <div class="orbit orbit-two"></div>
+
+      <div class="study-card">
+        <div class="card-top">
+          <span>YOUR STUDY SPACE</span>
+          <span class="dot">●</span>
+        </div>
+
+        <div class="book-illustration">📚</div>
+
+        <h3>One step at a time</h3>
+        <p>Stay focused. Keep learning.</p>
+
+        <div class="mini-progress">
+          <span id="hero-progress"></span>
+        </div>
+
+        <small id="hero-progress-label">
+          Your progress starts here
+        </small>
+      </div>
+
+      <span class="floating-star">✦</span>
+      <span class="floating-check">✓</span>
+    </div>
+  </section>
+
+  <!-- ABOUT THE CREATOR -->
+  <section class="creator-section" id="creator">
+
+    <div class="creator-photo-wrap">
+      <img
+        src="creator.png"
+        alt="University campus and StudyMate"
+        loading="lazy"
+      >
+
+      <span class="creator-sticker">
+        Made for<br>students ✨
+      </span>
+    </div>
+
+    <div class="creator-copy">
+      <p class="eyebrow">A LITTLE INTRODUCTION</p>
+
+      <h2>
+        Meet the creator<br>
+        <span>behind StudyMate.</span>
+      </h2>
+
+      <p>
+        Hello! My name is <strong>Norhane K.</strong>, and I am a
+        student at Frères Mentouri University – Constantine 1,
+        studying Networks and Telecommunications.
+      </p>
+
+      <p>
+        I created StudyMate for my Web Technologies project to help
+        students organize their studies, manage their time, calculate
+        grades, and follow their progress in one friendly space.
+      </p>
+
+      <div class="creator-tags">
+        <span>🎓 Student project</span>
+        <span>💻 HTML · CSS · JavaScript</span>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- DASHBOARD -->
+  <section class="dashboard" aria-label="Study summary">
+
+    <div class="stat-card">
+      <span class="stat-icon blue">✓</span>
+      <div>
+        <small>Tasks completed</small>
+        <strong id="stat-tasks">0 / 0</strong>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <span class="stat-icon purple">∑</span>
+      <div>
+        <small>Current average</small>
+        <strong id="stat-average">— / 20</strong>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <span class="stat-icon peach">◷</span>
+      <div>
+        <small>Focus sessions</small>
+        <strong id="stat-focus">0</strong>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <span class="stat-icon mint">✎</span>
+      <div>
+        <small>Saved notes</small>
+        <strong id="stat-notes">0</strong>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- TOOLKIT HEADING -->
+  <section class="section-heading">
+    <div>
+      <p class="eyebrow">YOUR TOOLKIT</p>
+      <h2>Everything you need<br>to study smarter.</h2>
+    </div>
+
+    <p class="section-note">
+      Useful tools to make student life a little easier.
+    </p>
+  </section>
+
+  <!-- STUDY PLANNER AND GRADES -->
+  <section class="tools-grid">
+
+    <article class="tool-card" id="planner">
+      <div class="tool-heading">
+        <span class="tool-icon blue">☑</span>
+        <span class="tag">PLAN</span>
+      </div>
+
+      <h3>Study Planner</h3>
+      <p>Add tasks and check them off when you finish.</p>
+
+      <form id="task-form" class="inline-form">
+        <input
+          id="task-input"
+          type="text"
+          placeholder="e.g. Review chapter 2"
+          maxlength="100"
+          required
+        >
+        <button type="submit" aria-label="Add task">+</button>
+      </form>
+
+      <ul id="task-list" class="task-list"></ul>
+
+      <p class="small-note" id="task-count">
+        0 of 0 tasks completed
+      </p>
+    </article>
+
+    <article class="tool-card" id="grades">
+      <div class="tool-heading">
+        <span class="tool-icon purple">％</span>
+        <span class="tag">CALCULATE</span>
+      </div>
+
+      <h3>Grade Calculator</h3>
+      <p>Calculate your weighted average out of 20.</p>
+
+      <form id="grade-form">
+        <div class="grade-inputs">
+          <input
+            id="subject-name"
+            type="text"
+            placeholder="Subject"
+            maxlength="40"
+            required
+          >
+
+          <input
+            id="grade"
+            type="number"
+            min="0"
+            max="20"
+            step="0.01"
+            placeholder="Grade /20"
+            required
+          >
+
+          <input
+            id="coefficient"
+            type="number"
+            min="0.01"
+            step="0.01"
+            placeholder="Coef."
+            required
+          >
+        </div>
+
+        <button class="secondary-btn" type="submit">
+          Add subject
+        </button>
+      </form>
+
+      <ul id="grade-list" class="grade-list"></ul>
+
+      <div class="average-box">
+        <span>Weighted average</span>
+        <strong id="average">— / 20</strong>
+      </div>
+
+      <button id="clear-grades" class="text-btn" type="button">
+        Clear grades
+      </button>
+    </article>
+
+    <!-- QUICK QUIZ -->
+    <article class="tool-card" id="quiz">
+      <div class="tool-heading">
+        <span class="tool-icon peach">✎</span>
+        <span class="tag">CHALLENGE</span>
+      </div>
+
+      <h3>Quick Quiz</h3>
+      <p>Test your knowledge with short questions.</p>
+
+      <div id="quiz-box">
+        <p class="quiz-question" id="question"></p>
+
+        <div class="answers" id="answers"></div>
+
+        <p id="quiz-feedback" class="feedback" aria-live="polite"></p>
+
+        <button
+          id="next-question"
+          class="secondary-btn"
+          type="button"
+          hidden
+        >
+          Next question
+        </button>
+      </div>
+
+      <p class="small-note" id="quiz-score">
+        Quiz score: 0
+      </p>
+    </article>
+
+  </section>
+
+  <!-- TIMETABLE -->
+  <section class="tool-card wide-card" id="timetable">
+
+    <div class="section-heading compact">
+      <div>
+        <p class="eyebrow">ORGANIZE YOUR WEEK</p>
+        <h2>Weekly Timetable</h2>
+      </div>
+
+      <p class="section-note">
+        Add classes or study sessions to your week.
+      </p>
+    </div>
+
+    <form id="schedule-form" class="schedule-form">
+
+      <input
+        id="schedule-subject"
+        type="text"
+        placeholder="Subject / activity"
+        maxlength="60"
+        required
+      >
+
+      <select id="schedule-day" required>
+        <option value="">Choose day</option>
+        <option>Monday</option>
+        <option>Tuesday</option>
+        <option>Wednesday</option>
+        <option>Thursday</option>
+        <option>Friday</option>
+        <option>Saturday</option>
+        <option>Sunday</option>
+      </select>
+
+      <input id="schedule-time" type="time" required>
+
+      <input
+        id="schedule-room"
+        type="text"
+        placeholder="Room (optional)"
+        maxlength="30"
+      >
+
+      <button class="secondary-btn" type="submit">
+        Add to timetable
+      </button>
+
+    </form>
+
+    <div class="table-wrap">
+      <table class="schedule-table">
+
+        <thead>
+          <tr>
+            <th>Day</th>
+            <th>Time</th>
+            <th>Subject / activity</th>
+            <th>Room</th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody id="schedule-list"></tbody>
+
+      </table>
+    </div>
+
+    <p class="small-note" id="schedule-empty">
+      Your weekly timetable is empty.
+    </p>
+
+  </section>
+
+  <!-- FOCUS TIMER AND NOTES -->
+  <section class="tools-grid lower-grid">
+
+    <article class="tool-card" id="focus">
+      <div class="tool-heading">
+        <span class="tool-icon peach">◷</span>
+        <span class="tag">FOCUS</span>
+      </div>
+
+      <h3>Focus Timer</h3>
+      <p>
+        Try a 25-minute focus session followed by a short break.
+      </p>
+
+      <div class="timer-display" id="timer-display">
+        25:00
+      </div>
+
+      <div class="timer-mode">
+        <button
+          type="button"
+          class="mode-btn active"
+          data-minutes="25"
+        >
+          Focus 25
+        </button>
+
+        <button
+          type="button"
+          class="mode-btn"
+          data-minutes="5"
+        >
+          Break 5
+        </button>
+      </div>
+
+      <div class="timer-controls">
+        <button class="secondary-btn" id="timer-start" type="button">
+          Start
+        </button>
+
+        <button class="outline-btn" id="timer-reset" type="button">
+          Reset
+        </button>
+      </div>
+
+      <p class="small-note" id="timer-message">
+        Ready when you are.
+      </p>
+    </article>
+
+    <!-- NOTES -->
+    <article class="tool-card" id="notes">
+      <div class="tool-heading">
+        <span class="tool-icon mint">✎</span>
+        <span class="tag">WRITE</span>
+      </div>
+
+      <h3>My Notes</h3>
+      <p>Write a quick note and save it in your browser.</p>
+
+      <form id="note-form" class="note-form">
+
+        <input
+          id="note-title"
+          type="text"
+          placeholder="Note title"
+          maxlength="60"
+          required
+        >
+
+        <textarea
+          id="note-content"
+          rows="4"
+          placeholder="Write your note here..."
+          required
+        ></textarea>
+
+        <button class="secondary-btn" type="submit">
+          Save note
+        </button>
+
+      </form>
+
+      <div id="notes-list" class="notes-list"></div>
+    </article>
+
+  </section>
+
+  <!-- STUDY RESOURCES -->
+  <section class="tool-card wide-card" id="resources">
+
+    <div class="section-heading compact">
+      <div>
+        <p class="eyebrow">LEARN & GROW</p>
+        <h2>Study Resources</h2>
+      </div>
+
+      <p class="section-note">
+        Search and filter useful learning websites.
+      </p>
+    </div>
+
+    <div class="resource-controls">
+      <input
+        id="resource-search"
+        type="search"
+        placeholder="Search resources..."
+      >
+
+      <select id="resource-filter">
+        <option value="all">All categories</option>
+        <option value="web">Web development</option>
+        <option value="practice">Practice</option>
+        <option value="courses">Courses</option>
+        <option value="reference">Reference</option>
+      </select>
+    </div>
+
+    <div class="resource-grid" id="resource-grid">
+
+      <a
+        class="resource-card"
+        data-category="web"
+        href="https://developer.mozilla.org/en-US/docs/Learn"
+        target="_blank"
+        rel="noopener"
+      >
+        <span class="resource-icon">⌘</span>
+        <div>
+          <h3>MDN Web Docs</h3>
+          <p>Learn HTML, CSS and JavaScript.</p>
+          <small>Web development</small>
+        </div>
+        <span class="arrow">↗</span>
+      </a>
+
+      <a
+        class="resource-card"
+        data-category="practice"
+        href="https://www.khanacademy.org/"
+        target="_blank"
+        rel="noopener"
+      >
+        <span class="resource-icon">∑</span>
+        <div>
+          <h3>Khan Academy</h3>
+          <p>Practice math and other subjects.</p>
+          <small>Practice</small>
+        </div>
+        <span class="arrow">↗</span>
+      </a>
+
+      <a
+        class="resource-card"
+        data-category="courses"
+        href="https://www.coursera.org/"
+        target="_blank"
+        rel="noopener"
+      >
+        <span class="resource-icon">✧</span>
+        <div>
+          <h3>Coursera</h3>
+          <p>Discover online courses.</p>
+          <small>Courses</small>
+        </div>
+        <span class="arrow">↗</span>
+      </a>
+
+      <a
+        class="resource-card"
+        data-category="reference"
+        href="https://www.w3schools.com/"
+        target="_blank"
+        rel="noopener"
+      >
+        <span class="resource-icon">⌘</span>
+        <div>
+          <h3>W3Schools</h3>
+          <p>Simple web tutorials and examples.</p>
+          <small>Reference</small>
+        </div>
+        <span class="arrow">↗</span>
+      </a>
+
+      <a
+        class="resource-card"
+        data-category="practice"
+        href="https://www.freecodecamp.org/"
+        target="_blank"
+        rel="noopener"
+      >
+        <span class="resource-icon">⌁</span>
+        <div>
+          <h3>freeCodeCamp</h3>
+          <p>Practice coding through projects.</p>
+          <small>Practice</small>
+        </div>
+        <span class="arrow">↗</span>
+      </a>
+
+      <a
+        class="resource-card"
+        data-category="courses"
+        href="https://www.edx.org/"
+        target="_blank"
+        rel="noopener"
+      >
+        <span class="resource-icon">✦</span>
+        <div>
+          <h3>edX</h3>
+          <p>Explore courses from universities.</p>
+          <small>Courses</small>
+        </div>
+        <span class="arrow">↗</span>
+      </a>
+
+    </div>
+
+    <p id="resource-empty" class="small-note" hidden>
+      No resources match your search.
+    </p>
+
+  </section>
+
+  <!-- PROGRESS TRACKER -->
+  <section class="tool-card wide-card" id="progress">
+
+    <div class="section-heading compact">
+      <div>
+        <p class="eyebrow">YOUR JOURNEY</p>
+        <h2>Progress Tracker</h2>
+      </div>
+
+      <p class="section-note">
+        A quick look at your study activity.
+      </p>
+    </div>
+
+    <div class="progress-grid">
+
+      <div class="progress-item">
+        <div class="progress-label">
+          <span>Tasks completed</span>
+          <strong id="progress-task-label">0%</strong>
+        </div>
+
+        <div class="progress-track">
+          <span id="progress-task-bar"></span>
+        </div>
+      </div>
+
+      <div class="progress-item">
+        <div class="progress-label">
+          <span>Grade average</span>
+          <strong id="progress-grade-label">0 / 20</strong>
+        </div>
+
+        <div class="progress-track">
+          <span id="progress-grade-bar"></span>
+        </div>
+      </div>
+
+      <div class="progress-item">
+        <div class="progress-label">
+          <span>Focus sessions completed</span>
+          <strong id="progress-focus-label">0</strong>
+        </div>
+
+        <div class="progress-track">
+          <span id="progress-focus-bar"></span>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="small-note">
+      Your progress updates when you use StudyMate.
+      Data is saved locally in this browser.
+    </p>
+
+  </section>
+
+  <!-- MOTIVATION BANNER -->
+  <section class="tip-banner">
+    <div class="tip-symbol">✦</div>
+
+    <div>
+      <p class="eyebrow">A LITTLE REMINDER</p>
+      <h2>Progress is better than perfection.</h2>
+      <p>
+        Make a plan, take a break, and keep moving forward.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <a class="brand footer-brand" href="#home">
+    <span class="brand-icon">S</span> StudyMate
+  </a>
+
+  <p>Made for students, one step at a time.</p>
+
+  <span>© 2026 StudyMate</span>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
